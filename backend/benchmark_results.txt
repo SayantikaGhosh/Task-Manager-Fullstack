@@ -1,0 +1,26 @@
+Redis Cache Benchmark
+=====================
+
+Endpoint:
+GET /tasks
+
+Requests:
+50
+
+Without Redis Cache
+-------------------
+Average: 602.81 ms
+P50: 571.97 ms
+P95: 786.10 ms
+
+With Redis Cache
+----------------
+Average: 455.17 ms
+P50: 436.07 ms
+P95: 443.18 ms
+
+Average improvement:
+24.5%
+
+P95 improvement:
+43.6%
