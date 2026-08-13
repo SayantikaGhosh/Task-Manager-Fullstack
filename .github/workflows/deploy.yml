@@ -27,6 +27,7 @@ jobs:
         env:
           SECRET_KEY: ci-test-secret-key-for-github-actions
           REDIS_URL: redis://localhost:6379
+          DATABASE_URL: postgresql+psycopg://test:test@localhost:5432/test
         run: pytest -q
 
   deploy:
