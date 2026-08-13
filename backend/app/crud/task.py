@@ -14,6 +14,7 @@ def create_task(
     new_task = Task(
         title=task.title,
         description=task.description,
+        status=task.status,
         due_date=task.due_date,
         owner_id=owner_id,
     )

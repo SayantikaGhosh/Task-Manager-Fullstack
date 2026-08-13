@@ -26,3 +26,14 @@ dist/
 
 # Logs
 *.log
+
+# Python test/cache files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build/cache files
+.cache/
+
+# Docker local files
+docker-compose.override.yml

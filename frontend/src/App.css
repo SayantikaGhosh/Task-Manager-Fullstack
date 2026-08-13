@@ -1,0 +1,69 @@
+#root {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+button {
+  padding: 8px 14px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
+
+input,
+select {
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input {
+  display: block;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 25px;
+}
+
+.task-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 12px;
+}
+
+.task-card h4 {
+  margin-top: 0;
+}
+
+.task-actions {
+  margin-top: 10px;
+}
+
+.stats {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.logout-button {
+  float: right;
+}
