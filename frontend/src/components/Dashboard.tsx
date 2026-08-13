@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { authenticatedFetch } from "../api"
+import { API_URL, authenticatedFetch } from "../api"
 import TaskItem from "./TaskItem"
 
 type DashboardProps = {
@@ -41,7 +41,7 @@ function Dashboard({ onLogout }: DashboardProps) {
 
   async function getStats() {
     const response = await authenticatedFetch(
-      "http://127.0.0.1:8000/tasks/stats"
+      `${API_URL}/tasks/stats`
     )
 
     if (!response.ok) {
@@ -55,7 +55,7 @@ function Dashboard({ onLogout }: DashboardProps) {
 
   async function createTask() {
     const response = await authenticatedFetch(
-      "http://127.0.0.1:8000/tasks",
+      `${API_URL}/tasks`,
       {
         method: "POST",
         headers: {
@@ -88,7 +88,7 @@ function Dashboard({ onLogout }: DashboardProps) {
 
   async function deleteTask(taskId: string) {
     const response = await authenticatedFetch(
-      `http://127.0.0.1:8000/tasks/${taskId}`,
+      `${API_URL}/tasks/${taskId}`,
       {
         method: "DELETE",
       }
@@ -107,7 +107,7 @@ function Dashboard({ onLogout }: DashboardProps) {
 
   async function updateTask(taskId: string) {
     const response = await authenticatedFetch(
-      `http://127.0.0.1:8000/tasks/${taskId}`,
+      `${API_URL}/tasks/${taskId}`,
       {
         method: "PUT",
         headers: {
@@ -141,10 +141,10 @@ function Dashboard({ onLogout }: DashboardProps) {
 
   useEffect(() => {
     async function getTasks() {
-      let url = "http://127.0.0.1:8000/tasks"
+      let url = `${API_URL}/tasks`
 
       if (statusFilter !== "") {
-        url = `http://127.0.0.1:8000/tasks?status=${statusFilter}`
+        url = `${API_URL}/tasks?status=${statusFilter}`
       }
 
       const response = await authenticatedFetch(url)
@@ -190,7 +190,9 @@ function Dashboard({ onLogout }: DashboardProps) {
         type="text"
         placeholder="Title"
         value={title}
-        onChange={(event) => setTitle(event.target.value)}
+        onChange={(event) =>
+          setTitle(event.target.value)
+        }
       />
 
       <input
@@ -209,7 +211,9 @@ function Dashboard({ onLogout }: DashboardProps) {
         }
       >
         <option value="TODO">Todo</option>
-        <option value="IN_PROGRESS">In Progress</option>
+        <option value="IN_PROGRESS">
+          In Progress
+        </option>
         <option value="DONE">Done</option>
       </select>
 
@@ -235,7 +239,9 @@ function Dashboard({ onLogout }: DashboardProps) {
       >
         <option value="">All</option>
         <option value="TODO">Todo</option>
-        <option value="IN_PROGRESS">In Progress</option>
+        <option value="IN_PROGRESS">
+          In Progress
+        </option>
         <option value="DONE">Done</option>
       </select>
 
@@ -248,11 +254,17 @@ function Dashboard({ onLogout }: DashboardProps) {
             onEdit={() => {
               setEditingTaskId(task.id)
               setEditTitle(task.title)
-              setEditDescription(task.description ?? "")
+              setEditDescription(
+                task.description ?? ""
+              )
               setEditStatus(task.status)
-              setEditDueDate(task.due_date ?? "")
+              setEditDueDate(
+                task.due_date ?? ""
+              )
             }}
-            onDelete={() => deleteTask(task.id)}
+            onDelete={() =>
+              deleteTask(task.id)
+            }
           />
 
           {editingTaskId === task.id && (
@@ -267,7 +279,9 @@ function Dashboard({ onLogout }: DashboardProps) {
               <input
                 value={editDescription}
                 onChange={(event) =>
-                  setEditDescription(event.target.value)
+                  setEditDescription(
+                    event.target.value
+                  )
                 }
               />
 
@@ -277,23 +291,33 @@ function Dashboard({ onLogout }: DashboardProps) {
                   setEditStatus(event.target.value)
                 }
               >
-                <option value="TODO">Todo</option>
+                <option value="TODO">
+                  Todo
+                </option>
+
                 <option value="IN_PROGRESS">
                   In Progress
                 </option>
-                <option value="DONE">Done</option>
+
+                <option value="DONE">
+                  Done
+                </option>
               </select>
 
               <input
                 type="date"
                 value={editDueDate}
                 onChange={(event) =>
-                  setEditDueDate(event.target.value)
+                  setEditDueDate(
+                    event.target.value
+                  )
                 }
               />
 
               <button
-                onClick={() => updateTask(task.id)}
+                onClick={() =>
+                  updateTask(task.id)
+                }
               >
                 Save
               </button>

@@ -1,3 +1,6 @@
+export const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000"
+
 let refreshPromise: Promise<string | null> | null = null
 
 export async function refreshAccessToken(): Promise<string | null> {
@@ -8,7 +11,7 @@ export async function refreshAccessToken(): Promise<string | null> {
   }
 
   const response = await fetch(
-    "http://127.0.0.1:8000/auth/refresh",
+    `${API_URL}/auth/refresh`,
     {
       method: "POST",
       headers: {
@@ -21,6 +24,9 @@ export async function refreshAccessToken(): Promise<string | null> {
   )
 
   if (!response.ok) {
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("refresh_token")
+
     return null
   }
 
@@ -62,9 +68,11 @@ export async function authenticatedFetch(
     refreshPromise = refreshAccessToken()
   }
 
-  token = await refreshPromise
-
-  refreshPromise = null
+  try {
+    token = await refreshPromise
+  } finally {
+    refreshPromise = null
+  }
 
   if (!token) {
     return response
