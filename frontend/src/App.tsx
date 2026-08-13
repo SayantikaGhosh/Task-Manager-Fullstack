@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import Login from "./components/login"
 import Signup from "./components/signup"
 import Dashboard from "./components/Dashboard"
-import { authenticatedFetch } from "./api"
+import { API_URL, authenticatedFetch } from "./api"
 import "./App.css"
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
       }
 
       const response = await authenticatedFetch(
-        "http://127.0.0.1:8000/auth/me"
+        `${API_URL}/auth/me`
       )
 
       if (response.ok) {
